@@ -29,6 +29,9 @@
         width: 100vw !important;
         height: 100vh !important;
         display: block;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
       }
 
       /* Move version buttons (HD/SD) to top center */
@@ -108,11 +111,29 @@
       const tooltip = document.getElementById('tooltip');
       const resetTooltip = () => tooltip.innerHTML = "";
 
-      // Force a resize event after load to help the game adjust to fullscreen
+      function resizeCanvas() {
+        const playnRoot = document.getElementById('playn-root');
+        if (!playnRoot) return;
+        const canvas = playnRoot.querySelector('canvas');
+        if (!canvas) return;
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        if (window.fowl && typeof window.fowl.resize === 'function') {
+          window.fowl.resize();
+        }
+      }
+
       window.addEventListener('load', () => {
         setTimeout(() => {
           window.dispatchEvent(new Event('resize'));
+          resizeCanvas();
         }, 500);
+      });
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
       });
     </script>
   </body>
