@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <title>Angry Birds Chrome</title>
+    <meta name="description" content="Play Angry Birds online in HD with Google Chrome">
+    <meta name="keywords" content="angry birds, online game, play angry birds, chrome">
     <link href="https://fonts.googleapis.com/css?family=Terminal+Dosis:800" rel="stylesheet">
     <link rel="stylesheet" href="css/angry_birds_chrome.css" type="text/css">
 
@@ -19,19 +21,7 @@
       #content, #gameDiv, #playn-root {
         width: 100vw;
         height: 100vh;
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-
-      /* Stretch canvas or game visuals if any */
-      canvas {
-        width: 100vw !important;
-        height: 100vh !important;
-        display: block;
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
+        position: relative;
       }
 
       /* Move version buttons (HD/SD) to top center */
@@ -110,31 +100,6 @@
 
       const tooltip = document.getElementById('tooltip');
       const resetTooltip = () => tooltip.innerHTML = "";
-
-      function resizeCanvas() {
-        const playnRoot = document.getElementById('playn-root');
-        if (!playnRoot) return;
-        const canvas = playnRoot.querySelector('canvas');
-        if (!canvas) return;
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        if (window.fowl && typeof window.fowl.resize === 'function') {
-          window.fowl.resize();
-        }
-      }
-
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          window.dispatchEvent(new Event('resize'));
-          resizeCanvas();
-        }, 500);
-      });
-
-      window.addEventListener('resize', () => {
-        resizeCanvas();
-      });
     </script>
   </body>
 </html>
