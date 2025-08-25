@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <title>Angry Birds Chrome</title>
-    <meta name="description" content="Play Angry Birds online in HD with Google Chrome">
-    <meta name="keywords" content="angry birds, online game, play angry birds, chrome">
     <link href="https://fonts.googleapis.com/css?family=Terminal+Dosis:800" rel="stylesheet">
     <link rel="stylesheet" href="css/angry_birds_chrome.css" type="text/css">
 
@@ -21,7 +19,16 @@
       #content, #gameDiv, #playn-root {
         width: 100vw;
         height: 100vh;
-        position: relative;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      /* Stretch canvas or game visuals if any */
+      canvas {
+        width: 100vw !important;
+        height: 100vh !important;
+        display: block;
       }
 
       /* Move version buttons (HD/SD) to top center */
@@ -100,6 +107,13 @@
 
       const tooltip = document.getElementById('tooltip');
       const resetTooltip = () => tooltip.innerHTML = "";
+
+      // Force a resize event after load to help the game adjust to fullscreen
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          window.dispatchEvent(new Event('resize'));
+        }, 500);
+      });
     </script>
   </body>
 </html>
