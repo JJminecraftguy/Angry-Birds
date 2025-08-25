@@ -24,22 +24,13 @@
         position: relative;
       }
 
-      #qualityToggle {
+      /* Move version buttons (HD/SD) to top center */
+      #version-buttons {
         position: absolute;
         top: 10px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 9999;
-        background: rgba(0, 0, 0, 0.5);
-        padding: 6px 12px;
-        border-radius: 10px;
-      }
-
-      #qualityToggle button {
-        margin: 0 5px;
-        font-size: 16px;
-        padding: 4px 10px;
-        cursor: pointer;
       }
 
       .content-table {
@@ -61,18 +52,12 @@
   </head>
 
   <body>
-    <!-- Quality Toggle UI -->
-    <div id="qualityToggle">
-      <button onclick="setQuality('sd')">SD</button>
-      <button onclick="setQuality('hd')">HD</button>
-    </div>
-
-    <!-- Game Content -->
     <table class="content-table">
       <tr>
         <td>
           <div class="gamecont" id="content">
             <div id="loginInfo"></div>
+
             <div id="gameDiv">
               <div id="playn-root">
                 <div id="loading">
@@ -84,9 +69,15 @@
               <div id="ingameframecontainer"></div>
               <div id="cornerframecontainer1"></div>
             </div>
+
             <div class="buttons">
               <div class="buttoncontainer">
-                <div id="version-buttons"></div>
+                <!-- SD/HD Buttons stay exactly the same -->
+                <div id="version-buttons">
+                  <button onclick="setQuality('sd')">SD</button>
+                  <button onclick="setQuality('hd')">HD</button>
+                </div>
+
                 <div id="tooltip"></div>
               </div>
             </div>
@@ -95,21 +86,18 @@
       </tr>
     </table>
 
-    <!-- NoScript Message -->
     <noscript>
       <div class="info-noscript">
         Your web browser must have JavaScript enabled to run this game.
       </div>
     </noscript>
 
-    <!-- Quality Script -->
     <script>
       function setQuality(mode) {
         localStorage.setItem('ab_quality', mode);
         location.reload();
       }
 
-      // Optional tooltip reset (if game uses it)
       const tooltip = document.getElementById('tooltip');
       const resetTooltip = () => tooltip.innerHTML = "";
     </script>
